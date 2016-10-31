@@ -22,13 +22,13 @@ public:
 	brd2asc(){};
 	brd2asc(const std::string& ext_path,const std::string& brdfilename);
 	~brd2asc(){};
-	const std::map<std::string,std::vector<std::string>> getoutfile_mat() const{return outfile_mat;};//？？？返回类型应当加&吗？？？
+	const std::map<std::string,std::vector<std::string>> getoutfile_mat() const{return outfile_mat;};//锛燂紵锛熻繑鍥炵被鍨嬪簲褰撳姞&鍚楋紵锛燂紵
 
 private:
 	const int writeCMD(const std::string& cmd_path);
 	const int Extracta(const std::string& ext_path,const std::string& brdfilename,const std::string& cmd_path);
-	const int Importa(const std::string& outfilename);//将excel表格文件中的内容读入map结构的内存；
-	std::map<std::string,std::vector<std::string>> outfile_mat;//Importa函数执行后将文件数据存入该变量，即Importa（）返回值；
+	const int Importa(const std::string& outfilename);//灏唀xcel琛ㄦ牸鏂囦欢涓殑鍐呭璇诲叆map缁撴瀯鐨勫唴瀛橈紱
+	std::map<std::string,std::vector<std::string>> outfile_mat;//Importa鍑芥暟鎵ц鍚庡皢鏂囦欢鏁版嵁瀛樺叆璇ュ彉閲忥紝鍗矷mporta锛堬級杩斿洖鍊硷紱
 
 
 };*/
@@ -38,7 +38,7 @@ class brd2asc
 public:
 	brd2asc(){};
 	brd2asc(const std::string& ext_path,const std::string& brdfilename);
-	const std::map<std::string,std::vector<std::string>>& Importa(const std::string& outfilename);//将excel表格文件中的内容读入map结构的内存；
+	const std::map<std::string,std::vector<std::string>>& Importa(const std::string& outfilename);//灏唀xcel琛ㄦ牸鏂囦欢涓殑鍐呭璇诲叆map缁撴瀯鐨勫唴瀛橈紱
 	
 	const std::string& getcmd_path() const{return cmd_path;};
 	~brd2asc(){};
@@ -47,55 +47,12 @@ public:
 private:
 	int writeCMD(const std::string& cmd_path);
 	int Extracta(const std::string& ext_path,const std::string& brdfilename,const std::string& cmd_path);
-	std::map<std::string,std::vector<std::string>> outfile_mat;//Importa函数执行后将文件数据存入该变量，即Importa（）返回值；
+	std::map<std::string,std::vector<std::string>> outfile_mat;//Importa鍑芥暟鎵ц鍚庡皢鏂囦欢鏁版嵁瀛樺叆璇ュ彉閲忥紝鍗矷mporta锛堬級杩斿洖鍊硷紱
 	std::string cmd_path;
 
 };
 
-/*class Shape
-{
-public:
-	//Shape() {}
-	Shape(std::vector<std::vector<std::string>>,int );
-	~Shape() {};
-	void setID(int t) { ID = t; }
-	void setNet(int t) { NetIndex = t; }
-	void setLayer(int t) { Layer = t; }
-	std::vector<Point2D>& Vertices(){ return Vertices_; }
-	std::vector<enum TypeVoid>& LVT() { return VoidTypes; }
-	std::vector<std::vector<Point2D>>& LVV() { return VoidVertices; }
 
-private:
-	int ID;  
-	int NetIndex;  // representing the net this Shape belongs to
-	int Layer;  
-	std::vector<Point2D> Vertices_;  // 
-	//std::vector<string> VoidIDs;  // this is deprecated
-	//std::vector<string> VoidTypes;  // "circular", "polygon"
-	std::vector<enum TypeVoid> VoidTypes;  // 0:"circular", 1:"polygon"
-	std::vector<std::vector<Point2D>> VoidVertices;
-	// if circular, first point (vector index 1) is center, second point is (r,0) where r is radius
-	// if polygon,  start from index 1; last point is the same as the first point
-};
-
-class Symbol {
-public:
-	//Symbol() {}
-	Symbol(std::vector<std::vector<std::string>>,int, std::vector<std::vector<std::string>>);
-	~Symbol() {}
-
-private:
-	std::string Name;
-	std::string PartNumber;
-	std::string DeviceType;
-	// all vectors have index 0 reserved; all data start from vector index 1
-	std::vector<std::string> PinNumbers;
-	std::vector<std::string> PinNames;
-	std::vector<Point2D> PinLocations;  // relative to the origin of the local coordinates of the symbol
-	std::vector<int> Pinstacks;
-	std::vector<double> PinRotations;
-
-};*/
 
 }
 
