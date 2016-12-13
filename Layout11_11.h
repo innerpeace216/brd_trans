@@ -12,7 +12,7 @@ enum TypeDevice{};//Component
 enum TypePadStack {SMD_PS=1, PTH_PS, Blind_PS, Buried_PS};
 enum TypePCB{PCB=1, Package};
 enum TypeTechnologyDrill{Mechanical=1, Laser};//Padstack
-enum TypeShape{Na=0, Circular=1, Polygon, Oblong_x, Oblong_y, SHAPE};//ĞŞ¸ÄÖµ£»liuchangĞŞ¸Ä£»
+enum TypeShape{Na=0, Circular=1, Polygon, Oblong_x, Oblong_y, SHAPE};//ä¿®æ”¹å€¼ï¼›åˆ˜ç•…ä¿®æ”¹ï¼›
 enum TypeControlledImpedance{SingleEnded=1, Differential};//Stackup
 enum TypeConductorLayer{Route=1, Plane};//Stackup
 enum TypeConductorFoil{VLP=1, RTF};//Stackup
@@ -107,7 +107,7 @@ class Padstack
 public:
 	Padstack() {}
 	//Padstack(TDI::Geometry*, int layers);
-	//Padstack(std::map<std::string,std::vector<std::string>>& temp_map£¬int i);
+	//Padstack(std::map<std::string,std::vector<std::string>>& temp_mapï¼Œint i);
 	~Padstack() {}
 	std::string getName() const { return name_; }
 	TypePadStack getType() const { return type_; }
@@ -122,9 +122,9 @@ public:
 
 	const double getRotation(int layer) const;
 	//void addPadLayer(TDI::Geometry* );
-	void setName(std::string name) { name_ = name; };//¼ÓÁËsetpinnameº¯Êı£»
+	void setName(std::string name) { name_ = name; };//åŠ äº†setpinnameå‡½æ•°ï¼›
 	void setTypePadStack(enum TypePadStack type) {type_=type;};
-	void setDrillDiameter(double dia,double pos,double neg);//¼ÓÁËsetdrilldiaµÄº¯Êı,º¯ÊıÊµÏÖÔÚlayout_brd;
+	void setDrillDiameter(double dia,double pos,double neg);//åŠ äº†setdrilldiaçš„å‡½æ•°,å‡½æ•°å®ç°åœ¨layout_brd;
 	void setPadOffset(double x, double y,int flag); 
 	void setDriallOffset(double x, double y){DriallOffset.setXY(x,y);}; 
 	void setLayerStart(int x){layer_start_=x;};
@@ -137,7 +137,7 @@ private:
 	// type of the padstack: { 1:"SMD", 2:"PTH", 3:"Blind", 4:"Buried"}
 	// "SMD": surface mount either on Top or Bottom layer only
 	// "PTH": plated through hole from Top to Bottom layers
-	// "Blind": Ö¸drillÃ»ÓĞ´òÍ¨È«²¿»¹ÊÇÃ»ÓĞpalateÈ«²¿£¨¼´²»ÊÇÈ«²¿²ã¶¼ÓĞpad£©£¿drill hole does not go through all layers, but includes either Top or Bottom layer
+	// "Blind": æŒ‡drillæ²¡æœ‰æ‰“é€šå…¨éƒ¨è¿˜æ˜¯æ²¡æœ‰palateå…¨éƒ¨ï¼ˆå³ä¸æ˜¯å…¨éƒ¨å±‚éƒ½æœ‰padï¼‰ï¼Ÿdrill hole does not go through all layers, but includes either Top or Bottom layer
 	// "Buried": drill hole goes through neither top nor bottom layers
 	//double DiameterDrillMin; // min, nominal, max of drill diameter at vector indices 1,2,3 (does not apply to SMD)
 	//double DiameterDrillNom;
@@ -170,8 +170,8 @@ private:
 	// the inner vector contains points for the pad on a given layer; the last point is the same as the first point
 	// the indices of the outer vector correspond to layers from Top to Bottom
 	// if pad does not exist on a given layer, all Point2D elements of the inner vector should be non-exist or ignored if exist
-	// if PadShape is circular, then PadData(1) is center; (2) is on the circle.¸Ä¶¯£º(ÈôÎªcircular£¬data1/2¶¼ÊÇÖ±¾¶£©
-	// if PadShape is polygon, then PadData is vertices£¨ÈôÎª¶à±ßĞÎ£¬dataÎª³¤¿í£©
+	// if PadShape is circular, then PadData(1) is center; (2) is on the circle.
+	// if PadShape is polygon, then PadData is verticesï¼ˆè‹¥ä¸ºå¤šè¾¹å½¢ï¼Œdataä¸ºé•¿å®½ï¼‰
 	
 
 };
@@ -184,7 +184,7 @@ public:
 	~Pin() {}
 	int getColor() const { return color_; };
 	std::string getRefDes()const { return refdes_; };
-	std::string getPinName()const { return pin_name_; };//¼ÓÁËgetpinnameº¯Êı£»
+	std::string getPinName()const { return pin_name_; };//åŠ äº†getpinnameå‡½æ•°ï¼›
 	int getNetIndex() const { return net_index_; };
 	//std::string getNumber() const { return pin_number_; } // may use int instead of string
 	int getPadstackIndex() const { return padstack_index_; };
@@ -193,7 +193,7 @@ public:
 	void setID(int i) { id_ = i; }
 	void setNetIndex(int i) { net_index_ = i; }
 	void setRefDes(std::string res) { refdes_ = res; };
-	void setPinName(std::string name) { pin_name_ = name; };//¼ÓÁËsetpinnameº¯Êı£»
+	void setPinName(std::string name) { pin_name_ = name; };//åŠ äº†setpinnameå‡½æ•°ï¼›
 	//void setNum(int i) { pin_number_ = i; }
 	void setRefNum(std::string );
 	void setPinStack(int i) { padstack_index_ = i; }
@@ -214,7 +214,7 @@ private:
 	//std::string Type; // SMD, PTH, Blind
 	int net_index_; // to which this Pin is connected to
 	//Padstack Pinstack;  
-	int padstack_index_; //´ıÍê³É£»
+	int padstack_index_; //
 	std::vector<int> pad_exist_; // 1: exist; 0:non-exist
 	// index 0 is reserved
 	// index 1 is for layer 1; index N for layer N, so on so forth
@@ -241,18 +241,18 @@ public:
 private:
 	int id_; // a system assigned int value for this via
 	//string Type; // PTH, Blind, Buried, Drilled//
-	//string Net; // net name to which this via belongs to//ÅĞ¶ÏÄÄ¼¸ĞĞÊôÓÚÍ¬Ò»¸övia£º°´ÕÕdrill hole xyÅĞ¶ÏÔÚÍ¬Ò»²ã£¬ÔÙÑéÖ¤padstack nameÊÇ·ñÍ¬Ñù£¬È»ºóÔÙ¶Ôlayer
-	//enum TypeVia type_; // PTH, Blind, Buried, Drilled;ÎÊÌâ£»//???ÊÇ²»ÊÇÉ¾µôÁË£¿£¿´ÓpadÀïÃæÕÒ£¬¿´Ã¿²ãÓĞÎŞpad£¬¿´
-	int net_index_; // net name index to which this via belongs to£»//Óënet_list¹ØÁª£»
-	int color_;//ÔİÊ±¿ÕÈ±£»
+	//string Net; // net name to which this via belongs to//åˆ¤æ–­å“ªå‡ è¡Œå±äºåŒä¸€ä¸ªviaï¼šæŒ‰ç…§drill hole xyåˆ¤æ–­åœ¨åŒä¸€å±‚ï¼Œå†éªŒè¯padstack nameæ˜¯å¦åŒæ ·ï¼Œç„¶åå†å¯¹layer
+	//enum TypeVia type_; // PTH, Blind, Buried, Drilled;é—®é¢˜ï¼›//???æ˜¯ä¸æ˜¯åˆ æ‰äº†ï¼Ÿï¼Ÿä»padé‡Œé¢æ‰¾ï¼Œçœ‹æ¯å±‚æœ‰æ— padï¼Œçœ‹
+	int net_index_; // net name index to which this via belongs toï¼›//ä¸net_listå…³è”ï¼›
+	int color_;//æš‚æ—¶ç©ºç¼ºï¼›
 	Point2D location_; 
 	int padstack_index_;
 	std::vector<int> pad_exist_; 
-	double rotation_;////ÈôÊÇcircle£¬ÇÒ¶¼ÎŞpadoff£¬ÔòÎª0£»ÆäËûÇé¿öÔİÊ±¿ÕÈ±£¬ÎŞ·¨ÕÒµ½padµÄrotationĞÅÏ¢£¬logÒ»ÏÂ£¬×ödefault´¦Àí
-	int back_drill_layer_start_;  // ÔİÊ±¿ÕÈ±starting from this layer, the via is drilled out (removed)
-	int back_drill_layer_stop_;   // ÔİÊ±¿ÕÈ±the backdrill (i.e. removal of via) is stopped at this layer
+	double rotation_;////è‹¥æ˜¯circleï¼Œä¸”éƒ½æ— padoffï¼Œåˆ™ä¸º0ï¼›å…¶ä»–æƒ…å†µæš‚æ—¶ç©ºç¼ºï¼Œæ— æ³•æ‰¾åˆ°padçš„rotationä¿¡æ¯ï¼Œlogä¸€ä¸‹ï¼Œåšdefaultå¤„ç†
+	int back_drill_layer_start_;  // æš‚æ—¶ç©ºç¼ºstarting from this layer, the via is drilled out (removed)
+	int back_drill_layer_stop_;   // æš‚æ—¶ç©ºç¼ºthe backdrill (i.e. removal of via) is stopped at this layer
 	// the start layer number is always smaller than the stop layer number
-	DblMNM back_drill_diameter_;//ÔİÊ±¿ÕÈ±£»
+	DblMNM back_drill_diameter_;//æš‚æ—¶ç©ºç¼ºï¼›
 };
 
 class Shape
@@ -277,7 +277,7 @@ private:
 	int layer_; 
 	int color_index_;
 	std::vector<Point2D> vertices_;  // 
-	std::vector<int> shape_flags_;//2016-11-28£¬liuchang¼Ó£»
+	std::vector<int> shape_flags_;//2016-11-28ï¼Œåˆ˜ç•…åŠ ï¼›
 	//std::vector<string> VoidIDs;  // this is deprecated
 	//std::vector<string> VoidTypes;  // "circular", "polygon"
 	std::vector<enum TypeShape> void_types_;  // 0:"circular", 1:"polygon"
@@ -286,7 +286,7 @@ private:
 	// if polygon,  start from index 1; last point is the same as the first point
 	std::vector<std::vector<int>> void_flags_;
 };
-//void·ÖÁ½Àà£¬Ò»ÀàÊÇcircular£¬ÆäËûĞÎ×´µÚ¶şÀà£¬Ô²ĞÄ
+//voidåˆ†ä¸¤ç±»ï¼Œä¸€ç±»æ˜¯circularï¼Œå…¶ä»–å½¢çŠ¶ç¬¬äºŒç±»ï¼Œåœ†å¿ƒ
 class Component
 {
 public:
@@ -303,10 +303,10 @@ private:
 	//string DeviceType;  // a string uniquely representing the component type such as R2k_1%, C2N1, ..
 	std::string symbol_name_;
 	Point2D location_;  // the symbol origin is placed at this location
-	int layer_; // top or bottom placement£»ÎÊÌâ£¨fcompºÍfsymbol¶¼Ã»ÓĞ£©£»
+	int layer_; // top or bottom placementï¼›
 	double rotation_; // degree symbol is rotated CW after placement on top or bottom, always looking from above Top layer
 	// this convention is to be verified with Cadence (optional)
-	std::vector<int> net_indices_; // ÎÊÌâ(Í¬Ò»¸örefdesµÄpin£¬¿ÉÄÜÓĞ²»Í¬µÄnet£»Òò´Ëcomp¶ÔÏóÊÇÒÔpinÎªµ¥Î»»¹ÊÇrefdes£¿£©£»list of nets connected to the pins, in the same sequence as the PinNames in Symbol
+	std::vector<int> net_indices_; // list of nets connected to the pins, in the same sequence as the PinNames in Symbol
 
 	std::string part_number_;
 };
@@ -328,13 +328,13 @@ private:
 	////std::string device_type_;
 	// all vectors have index 0 reserved; all data start from vector index 1
 	////std::vector<std::string> pin_numbers_;
-	std::vector<std::string> pin_names_;//nameÓĞÖØ¸´£¨Óëpin_centerµÄindex¶ÔÓ¦£¬²»Í¬pin_centerµÄname¿ÉÄÜÏàÍ¬£©
+	std::vector<std::string> pin_names_;//nameæœ‰é‡å¤ï¼ˆä¸pin_centerçš„indexå¯¹åº”ï¼Œä¸åŒpin_centerçš„nameå¯èƒ½ç›¸åŒï¼‰
 	std::vector<Point2D> pin_centers_;  // relative to the origin of the local coordinates of the symbol
 	////std::vector<int> pin_stacks_;
 	////std::vector<double> pin_rotations_;
 
 	std::vector<enum TypeShape> pin_types_; // pin shape type
-	std::vector<std::vector<Point2D>> pin_shapes_;//ÎÊÌâ£»
+	std::vector<std::vector<Point2D>> pin_shapes_;//
 	
 };
 
@@ -347,12 +347,12 @@ public:
 	void setPinName(std::vector<std::string> pin_name) {pin_name_=pin_name;};
 	void setPinCenter(double x,double y,int flag) ;
 private:
-	std::string part_number_;//brdÓĞ
+	std::string part_number_;//brdæœ‰
 	std::string parent_ppt_;
 	std::string parent_ppt_part_;
-	std::string parent_part_type_;//brdÓĞ
+	std::string parent_part_type_;//brdæœ‰
 	std::string part_name_;
-	std::vector<std::string> pin_name_; // index indicates the pin number;ÎÊÌâ£¨ÓësymbolÒ»Ñù£¬Ò²¼ÓÉÏs±ä¸´Êı£¿£©
+	std::vector<std::string> pin_name_; // index indicates the pin number;é—®é¢˜ï¼ˆä¸symbolä¸€æ ·ï¼Œä¹ŸåŠ ä¸Šså˜å¤æ•°ï¼Ÿï¼‰
 	std::vector<Point2D> pin_centers_;
 };
 
